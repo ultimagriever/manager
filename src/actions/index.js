@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 
 export const emailChanged = email => ({
     type: 'email_changed',
@@ -28,6 +29,8 @@ export const loadingRequest = loading => ({
 const loadingSuccessful = (dispatch, user) => {
     dispatch(userLoggedIn(user));
     dispatch(loadingRequest(false));
+
+    Actions.main();
 };
 
 const loadingFailed = (dispatch, error) => {
