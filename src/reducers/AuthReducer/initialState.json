@@ -1,3 +1,7 @@
 {
-
+  "email": "",
+  "password": "",
+  "loading": false,
+  "error": "",
+  "user": null
 }

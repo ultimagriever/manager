@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import React, { Component } from 'react';
+import { View } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk';
 import reducer from '../../reducers';
 import LoginForm from '../LoginForm';
-import { Header } from '../../components';
 
 export default class App extends Component {
   componentWillMount() {
@@ -19,10 +19,10 @@ export default class App extends Component {
   }
 
   render() {
+    const store = createStore(reducer, {}, applyMiddleware(ReduxThunk));
     return (
-        <Provider store={createStore(reducer)}>
+        <Provider store={store}>
           <View>
-            <Header headerText="Employee Manager" />
             <LoginForm />
           </View>
         </Provider>
