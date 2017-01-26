@@ -10,6 +10,7 @@ import FormPicker from './FormPicker';
 import Spinner from './Spinner';
 import Welcome from './Welcome';
 import ListItem from './ListItem';
+import Confirm from './Confirm';
 
 export {
     Button,
@@ -20,5 +21,6 @@ export {
     FormPicker,
     Spinner,
     Welcome,
-    ListItem
+    ListItem,
+    Confirm
 };

@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import Communications from 'react-native-communications';
 import { employeeEdit, employeeUpdate, employeeDelete } from '../../actions';
 import EmployeeForm from '../EmployeeForm';
-import { Card, CardSection, Button } from '../../components';
+import { Card, CardSection, Button, Confirm } from '../../components';
 
 class EmployeeEdit extends Component {
+  state = {
+    modalVisible: false
+  }
+
   componentWillMount() {
     _.each(this.props.employee, (value, prop) => {
       this.props.onLoad({ prop, value });
@@ -22,6 +27,24 @@ class EmployeeEdit extends Component {
     const { id } = this.props;
 
     this.props.onDelete(id);
+    this.toggleModalVisible();
+  }
+
+  onTextButtonPress() {
+    const { phone, shift } = this.props;
+
+    // eslint-disable-next-line
+    Communications.text(phone, `Your upcoming shift is on ${shift}`);
+  }
+
+  toggleModalVisible() {
+    this.setState({
+      modalVisible: !this.state.modalVisible
+    });
+  }
+
+  confirmButtonDelete() {
+    this.toggleModalVisible();
   }
 
   render() {
@@ -34,11 +57,26 @@ class EmployeeEdit extends Component {
               Save Changes
             </Button>
           </CardSection>
+
           <CardSection>
-            <Button onPress={this.onDeleteButtonPress.bind(this)}>
-              Delete Employee
+            <Button onPress={this.onTextButtonPress.bind(this)}>
+              Text Schedule
             </Button>
           </CardSection>
+
+          <CardSection>
+            <Button onPress={this.confirmButtonDelete.bind(this)}>
+              Fire Employee
+            </Button>
+          </CardSection>
+
+          <Confirm
+              visible={this.state.modalVisible}
+              onCancel={this.toggleModalVisible.bind(this)}
+              onConfirm={this.onDeleteButtonPress.bind(this)}
+          >
+            Are you sure you want to fire them?
+          </Confirm>
         </Card>
     );
   }
