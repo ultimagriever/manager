@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, FormField, FormPicker, Button } from '../../components';
-import { employeeUpdate, employeeAdd } from '../../actions';
+import { CardSection, FormField, FormPicker } from '../../components';
+import { employeeUpdate } from '../../actions';
 import shifts from './shifts.json';
 
-class EmployeeCreate extends Component {
-  onButtonPress() {
-    const { name, phone, shift } = this.props;
-
-    this.props.onSubmit({ name, phone, shift });
-  }
-
+class EmployeeForm extends Component {
   render() {
     return (
-        <Card>
+        <View>
           <CardSection>
             <FormField
                 label="Name"
@@ -40,13 +35,7 @@ class EmployeeCreate extends Component {
                 items={shifts}
             />
           </CardSection>
-
-          <CardSection>
-            <Button onPress={this.onButtonPress.bind(this)}>
-              Create
-            </Button>
-          </CardSection>
-        </Card>
+        </View>
     );
   }
 }
@@ -56,8 +45,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onChangeText: employee => dispatch(employeeUpdate(employee)),
-  onSubmit: employee => dispatch(employeeAdd(employee))
+  onChangeText: employee => dispatch(employeeUpdate(employee))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeCreate);
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeForm);

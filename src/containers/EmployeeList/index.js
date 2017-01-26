@@ -31,7 +31,6 @@ class EmployeeList extends Component {
   }
 
   render() {
-    console.log(this.props.employees);
     return (
         <ListView
             enableEmptySections
