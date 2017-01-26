@@ -2,7 +2,7 @@ import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from '../containers/LoginForm';
 import EmployeeList from '../containers/EmployeeList';
-import EmployeeCreate from '../containers/EmployeeCreate';
+import EmployeeForm from '../containers/EmployeeForm';
 
 const RouterComponent = () => (
     <Router sceneStyle={{ paddingTop: 65 }} >
@@ -15,9 +15,10 @@ const RouterComponent = () => (
             component={EmployeeList}
             title="Employees"
             rightTitle="Add"
-            onRight={() => Actions.employeeCreate()}
+            onRight={() => Actions.employeeForm()}
+            initial
         />
-        <Scene key="employeeCreate" component={EmployeeCreate} title="Create new Employee" />
+        <Scene key="employeeForm" component={EmployeeForm} title="Create new Employee" />
       </Scene>
     </Router>
 );
