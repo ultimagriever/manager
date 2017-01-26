@@ -6,6 +6,7 @@ import Card from './Card';
 import CardSection from './CardSection';
 import Header from './Header';
 import FormField from './FormField';
+import FormPicker from './FormPicker';
 import Spinner from './Spinner';
 import Welcome from './Welcome';
 
@@ -15,6 +16,7 @@ export {
     CardSection,
     Header,
     FormField,
+    FormPicker,
     Spinner,
-    Welcome
+    Welcome,
 };

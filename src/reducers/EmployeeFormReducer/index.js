@@ -1,6 +1,6 @@
 import initialState from './initialState.json';
 
-export const EmployeesReducer = (state = initialState, action) => {
+export const EmployeeFormReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'employee_update':
       return {
