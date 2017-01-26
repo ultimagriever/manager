@@ -7,6 +7,11 @@ export const EmployeeFormReducer = (state = initialState, action) => {
           ...state,
         [action.payload.prop]: action.payload.value
       };
+    case 'employee_reset':
+      return {
+          ...state,
+          ...initialState
+      }
     default:
       return state;
   }

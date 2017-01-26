@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, FormField, FormPicker, Button } from '../../components';
-import { employeeUpdate } from '../../actions';
+import { employeeUpdate, employeeAdd } from '../../actions';
 import shifts from './shifts.json';
 
 class EmployeeCreate extends Component {
+  onButtonPress() {
+    const { name, phone, shift } = this.props;
+
+    this.props.onSubmit({ name, phone, shift });
+  }
+
   render() {
-    console.log(this.props);
     return (
         <Card>
           <CardSection>
@@ -31,13 +36,13 @@ class EmployeeCreate extends Component {
             <FormPicker
                 label="Shift"
                 onValueChange={value => this.props.onChangeText({ prop: 'shift', value })}
-                selectedValue={this.props.shift}
+                selectedValue={this.props.shift.length > 0 ? this.props.shift : 'mon'}
                 items={shifts}
             />
           </CardSection>
 
           <CardSection>
-            <Button>
+            <Button onPress={this.onButtonPress.bind(this)}>
               Create
             </Button>
           </CardSection>
@@ -46,10 +51,13 @@ class EmployeeCreate extends Component {
   }
 }
 
-const mapStateToProps = state => state.employeeForm;
+const mapStateToProps = state => ({
+  ...state.employeeForm
+});
 
 const mapDispatchToProps = dispatch => ({
-  onChangeText: employee => dispatch(employeeUpdate(employee))
+  onChangeText: employee => dispatch(employeeUpdate(employee)),
+  onSubmit: employee => dispatch(employeeAdd(employee))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeCreate);
