@@ -18,9 +18,9 @@ class EmployeeEdit extends Component {
   }
 
   onButtonPress() {
-    const { name, phone, shift, id } = this.props;
+    const { name, phone, shift, avatar, id } = this.props;
 
-    this.props.onSubmit({ name, phone, shift, id });
+    this.props.onSubmit({ name, phone, shift, avatar, id });
   }
 
   onDeleteButtonPress() {

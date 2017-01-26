@@ -1,11 +1,31 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Image, Alert } from 'react-native';
 import { connect } from 'react-redux';
-import { CardSection, FormField, FormPicker } from '../../components';
+import { showImagePicker } from 'react-native-image-picker';
+import { CardSection, FormField, FormPicker, Button } from '../../components';
 import { employeeUpdate } from '../../actions';
 import shifts from './shifts.json';
 
 class EmployeeForm extends Component {
+  onSelectPicture() {
+    const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true
+      }
+    };
+
+    showImagePicker(options, response => {
+      if (response.error) {
+        Alert.alert('ImagePicker Error', response.error);
+      } else {
+        this.props.onChange({ prop: 'avatar', value: response.uri.replace('file://', '') });
+      }
+    });
+  }
+
   render() {
     return (
         <View>
@@ -13,7 +33,7 @@ class EmployeeForm extends Component {
             <FormField
                 label="Name"
                 placeholder="Jane Doe"
-                onChangeText={value => this.props.onChangeText({ prop: 'name', value })}
+                onChangeText={value => this.props.onChange({ prop: 'name', value })}
                 value={this.props.name}
             />
           </CardSection>
@@ -22,7 +42,7 @@ class EmployeeForm extends Component {
             <FormField
                 label="Phone"
                 placeholder="555-5555"
-                onChangeText={value => this.props.onChangeText({ prop: 'phone', value })}
+                onChangeText={value => this.props.onChange({ prop: 'phone', value })}
                 value={this.props.phone}
             />
           </CardSection>
@@ -30,10 +50,17 @@ class EmployeeForm extends Component {
           <CardSection>
             <FormPicker
                 label="Shift"
-                onValueChange={value => this.props.onChangeText({ prop: 'shift', value })}
+                onValueChange={value => this.props.onChange({ prop: 'shift', value })}
                 selectedValue={this.props.shift.length > 0 ? this.props.shift : 'mon'}
                 items={shifts}
             />
+          </CardSection>
+
+          <CardSection>
+            <Image source={{ uri: this.props.avatar }} style={{ width: 50, height: 50, alignSelf: 'center' }} />
+            <Button onPress={this.onSelectPicture.bind(this)}>
+              Select Profile Picture
+            </Button>
           </CardSection>
         </View>
     );
@@ -45,7 +72,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onChangeText: employee => dispatch(employeeUpdate(employee))
+  onChange: employee => dispatch(employeeUpdate(employee))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeForm);

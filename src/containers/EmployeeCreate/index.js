@@ -10,9 +10,9 @@ class EmployeeCreate extends Component {
   }
 
   onButtonPress() {
-    const { name, phone, shift } = this.props;
+    const { name, phone, shift, avatar } = this.props;
 
-    this.props.onSubmit({ name, phone, shift });
+    this.props.onSubmit({ name, phone, shift, avatar });
   }
 
   render() {

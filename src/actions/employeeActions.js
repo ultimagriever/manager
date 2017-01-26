@@ -10,11 +10,11 @@ export const employeeReset = () => ({
   type: 'employee_reset'
 });
 
-export const employeeAdd = ({ name, phone, shift }) => dispatch => {
+export const employeeAdd = ({ name, phone, shift, avatar }) => dispatch => {
   const { currentUser } = firebase.auth();
 
   firebase.database().ref(`/users/${currentUser.uid}/employees`)
-      .push({ name, phone, shift })
+      .push({ name, phone, shift, avatar })
       .then(() => back(dispatch));
 };
 
@@ -25,11 +25,11 @@ export const employeesFetch = () => dispatch => {
       .on('value', snapshot => dispatch({ type: 'employees_fetch_success', employees: snapshot.val() }));
 }
 
-export const employeeEdit = ({ name, phone, shift, id }) => dispatch => {
+export const employeeEdit = ({ name, phone, shift, avatar, id }) => dispatch => {
   const { currentUser } = firebase.auth();
 
   firebase.database().ref(`/users/${currentUser.uid}/employees/${id}`)
-      .update({ name, phone, shift })
+      .update({ name, phone, shift, avatar })
       .then(() => back(dispatch));
 };
 
