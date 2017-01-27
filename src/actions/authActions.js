@@ -1,5 +1,8 @@
-import firebase from 'firebase';
+// import firebase from 'firebase';
+import Firestack from 'react-native-firestack';
 import { Actions } from 'react-native-router-flux';
+
+const firestack = new Firestack();
 
 export const emailChanged = email => ({
   type: 'email_changed',
@@ -29,8 +32,6 @@ export const loadingRequest = loading => ({
 const loadingSuccessful = (dispatch, user) => {
   dispatch(userLoggedIn(user));
   dispatch(loadingRequest(false));
-
-  Actions.main();
 };
 
 const loadingFailed = (dispatch, error) => {
@@ -40,10 +41,10 @@ const loadingFailed = (dispatch, error) => {
 
 export const loginUser = ({ email, password }) => dispatch => {
   dispatch(loadingRequest(true));
-  firebase.auth().signInWithEmailAndPassword(email, password)
+  firestack.auth().signInWithEmailAndPassword(email, password)
       .then(user => loadingSuccessful(dispatch, user))
       .catch(() => {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        firestack.auth().createUserWithEmailAndPassword(email, password)
             .then(user => loadingSuccessful(dispatch, user))
             .catch(error => {
               let errorMessage;
@@ -93,7 +94,7 @@ export const authenticate = user => {
 };
 
 export const logoutUser = () => dispatch => {
-  firebase.auth().signOut().then(() => dispatch(logout()));
+  firestack.auth().signOut().then(() => dispatch(logout()));
 }
 
 const logout = () => {

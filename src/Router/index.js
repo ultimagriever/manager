@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import firebase from 'firebase';
+import Firestack from 'react-native-firestack';
 import { connect } from 'react-redux';
 import LoginForm from '../containers/LoginForm';
 import EmployeeList from '../containers/EmployeeList';
@@ -11,13 +11,19 @@ import { Loading } from '../components';
 
 class RouterComponent extends Component {
   componentWillMount() {
-    firebase.auth().onAuthStateChanged(user => {
+    const firestack = new Firestack();
+
+    firestack.auth().onAuthStateChanged(user => {
       if (user !== null) {
         this.props.isAuthenticated(user);
       } else {
         this.props.logout();
       }
     });
+  }
+
+  shouldComponentUpdate() {
+    return false;
   }
 
   render() {
