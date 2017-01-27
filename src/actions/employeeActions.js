@@ -1,6 +1,7 @@
 // import firebase from 'firebase';
 import Firestack from 'react-native-firestack';
 import { Actions } from 'react-native-router-flux';
+import uuid from 'uuid';
 
 const firestack = new Firestack();
 
@@ -15,7 +16,6 @@ export const employeeReset = () => ({
 
 export const employeeAdd = ({ name, phone, shift, avatar }) => dispatch => {
   const { currentUser } = firestack.auth();
-
   firestack.database().ref(`/users/${currentUser.uid}/employees`)
       .push({ name, phone, shift, avatar })
       .then(() => back(dispatch));
@@ -29,13 +29,15 @@ export const employeesFetch = () => dispatch => {
       });
 }
 
-export const employeesLoading = () => ({
-  type: 'employees_loading'
-});
+export const employeeUploadAvatar = uri => dispatch => {
+  const { currentUser } = firestack.auth();
+  firestack.storage().ref(`uploads/${currentUser.uid}/avatars/${uuid.v4()}.png`)
+      .putFile(uri, { contentType: 'image/png' })
+      .then(uploadedFile => dispatch(employeeUpdate({ prop: 'avatar', value: uploadedFile.downloadUrl })));
+};
 
 export const employeeEdit = ({ name, phone, shift, avatar, id }) => dispatch => {
   const { currentUser } = firestack.auth();
-
   firestack.database().ref(`/users/${currentUser.uid}/employees/${id}`)
       .update({ name, phone, shift, avatar })
       .then(() => back(dispatch));
@@ -43,7 +45,6 @@ export const employeeEdit = ({ name, phone, shift, avatar, id }) => dispatch => 
 
 export const employeeDelete = id => dispatch => {
   const { currentUser } = firestack.auth();
-
   firestack.database().ref(`/users/${currentUser.uid}/employees/${id}`).remove()
       .then(() => back(dispatch));
 }

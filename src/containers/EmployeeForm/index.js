@@ -3,7 +3,7 @@ import { View, Image, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { showImagePicker } from 'react-native-image-picker';
 import { CardSection, FormField, FormPicker, Button } from '../../components';
-import { employeeUpdate } from '../../actions';
+import { employeeUpdate, employeeUploadAvatar } from '../../actions';
 import shifts from './shifts.json';
 
 class EmployeeForm extends Component {
@@ -21,7 +21,7 @@ class EmployeeForm extends Component {
       if (response.error) {
         Alert.alert('ImagePicker Error', response.error);
       } else if (typeof response.uri !== 'undefined') {
-        this.props.onChange({ prop: 'avatar', value: response.uri.replace('file://', '') });
+        this.props.onUpload(response.uri);
       }
     });
   }
@@ -73,7 +73,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onChange: employee => dispatch(employeeUpdate(employee))
+  onChange: employee => dispatch(employeeUpdate(employee)),
+  onUpload: uri => dispatch(employeeUploadAvatar(uri))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeForm);
