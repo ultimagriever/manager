@@ -26,7 +26,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8DE3D1D91E3B837C00C771D3 /* managerTests in Resources */ = {isa = PBXBuildFile; fileRef = 8DE3D1D81E3B837C00C771D3 /* managerTests */; };
-		8DE3D30E1E3BC67300C771D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DE3D30D1E3BC67300C771D3 /* GoogleService-Info.plist */; };
+		8DE3D3481E3BDA6A00C771D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DE3D3471E3BDA6A00C771D3 /* GoogleService-Info.plist */; };
 		8DEC22881E3A8BA8009040A5 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DEC22711E3A8B49009040A5 /* libRCTCameraRoll.a */; };
 		ADB78A41AC3C466AA266FAB2 /* libFirestack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F4A81592D042B19DBCD4B3 /* libFirestack.a */; };
 		DA14AC2DBACB98DE529837B2 /* Pods_manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72BBF5F9E7B73B63DD2E821 /* Pods_manager.framework */; };
@@ -265,7 +265,7 @@
 		84F4A81592D042B19DBCD4B3 /* libFirestack.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFirestack.a; sourceTree = "<group>"; };
 		89CD3CA2C5094AF4B81FC680 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		8DE3D1D81E3B837C00C771D3 /* managerTests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = managerTests; sourceTree = "<group>"; };
-		8DE3D30D1E3BC67300C771D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8DE3D3471E3BDA6A00C771D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8DEC22691E3A8B49009040A5 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		90A899393802CDB133A7C134 /* Pods-manager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manager.release.xcconfig"; path = "Pods/Target Support Files/Pods-manager/Pods-manager.release.xcconfig"; sourceTree = "<group>"; };
 		B0944CF18A2A4F2B9DDF6ECA /* Firestack.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Firestack.xcodeproj; path = "../node_modules/react-native-firestack/ios/Firestack.xcodeproj"; sourceTree = "<group>"; };
@@ -458,7 +458,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				8DE3D30D1E3BC67300C771D3 /* GoogleService-Info.plist */,
+				8DE3D3471E3BDA6A00C771D3 /* GoogleService-Info.plist */,
 				8DE3D1D81E3B837C00C771D3 /* managerTests */,
 				13B07FAE1A68108700A75B9A /* manager */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -866,7 +866,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				8DE3D30E1E3BC67300C771D3 /* GoogleService-Info.plist in Resources */,
+				8DE3D3481E3BDA6A00C771D3 /* GoogleService-Info.plist in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				8DE3D1D91E3B837C00C771D3 /* managerTests in Resources */,
 			);
