@@ -15,6 +15,7 @@ class LoginForm extends Component {
                 label="Email"
                 placeholder="e.g. user@example.com"
                 autoCapitalize="none"
+                keyboardType="email-address"
                 autoCorrect={false}
                 onChangeText={this.props.onEmailChange}
                 value={this.props.email}

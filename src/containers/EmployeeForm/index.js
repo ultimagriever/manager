@@ -42,6 +42,7 @@ class EmployeeForm extends Component {
             <FormField
                 label="Phone"
                 placeholder="555-5555"
+                keyboardType="phone-pad"
                 onChangeText={value => this.props.onChange({ prop: 'phone', value })}
                 value={this.props.phone}
             />
