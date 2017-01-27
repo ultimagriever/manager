@@ -82,3 +82,24 @@ export const loginUser = ({ email, password }) => dispatch => {
             });
       });
 };
+
+export const authenticate = user => {
+  Actions.main();
+
+  return {
+    type: 'is_authenticated',
+    user
+  };
+};
+
+export const logoutUser = () => dispatch => {
+  firebase.auth().signOut().then(() => dispatch(logout()));
+}
+
+const logout = () => {
+  Actions.auth();
+
+  return {
+    type: 'logout'
+  };
+};

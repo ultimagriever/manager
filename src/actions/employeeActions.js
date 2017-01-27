@@ -21,9 +21,14 @@ export const employeeAdd = ({ name, phone, shift, avatar }) => dispatch => {
 export const employeesFetch = () => dispatch => {
   const { currentUser } = firebase.auth();
 
+  dispatch(employeesLoading());
   firebase.database().ref(`/users/${currentUser.uid}/employees`)
       .on('value', snapshot => dispatch({ type: 'employees_fetch_success', employees: snapshot.val() }));
 }
+
+export const employeesLoading = () => ({
+  type: 'employees_loading'
+});
 
 export const employeeEdit = ({ name, phone, shift, avatar, id }) => dispatch => {
   const { currentUser } = firebase.auth();

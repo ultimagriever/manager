@@ -2,6 +2,18 @@ import initialState from './initialState.json';
 
 export const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'is_authenticated':
+      return {
+          ...state,
+          authenticated: true,
+          user: action.user
+      };
+    case 'logout':
+      return {
+          ...state,
+          authenticated: false,
+          user: null
+      };
     case 'email_changed':
       return {
           ...state,

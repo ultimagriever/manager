@@ -20,7 +20,7 @@ class EmployeeForm extends Component {
     showImagePicker(options, response => {
       if (response.error) {
         Alert.alert('ImagePicker Error', response.error);
-      } else {
+      } else if (typeof response.uri !== 'undefined') {
         this.props.onChange({ prop: 'avatar', value: response.uri.replace('file://', '') });
       }
     });

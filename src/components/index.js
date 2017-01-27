@@ -11,6 +11,7 @@ import Spinner from './Spinner';
 import Welcome from './Welcome';
 import ListItem from './ListItem';
 import Confirm from './Confirm';
+import Loading from './Loading';
 
 export {
     Button,
@@ -22,5 +23,6 @@ export {
     Spinner,
     Welcome,
     ListItem,
-    Confirm
+    Confirm,
+    Loading
 };

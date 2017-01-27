@@ -3,7 +3,7 @@ import { ListView } from 'react-native';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { employeesFetch } from '../../actions';
-import { ListItem } from '../../components';
+import { ListItem, Loading } from '../../components';
 
 class EmployeeList extends Component {
   componentWillMount() {
@@ -31,7 +31,8 @@ class EmployeeList extends Component {
   }
 
   render() {
-    return (
+    console.log(this.props.loadingEmployees);
+    return this.props.loadingEmployees ? <Loading /> : (
         <ListView
             enableEmptySections
             dataSource={this.dataSource}
@@ -42,10 +43,12 @@ class EmployeeList extends Component {
 }
 
 const mapStateToProps = state => {
-  const employees = _.map(state.employees, (val, id) => ({ ...val, id }));
+  const { loadingEmployees, employees } = state.employees;
+  const employeesArray = _.map(employees, (val, id) => ({ ...val, id }));
 
   return {
-    employees
+    employees: employeesArray,
+    loadingEmployees
   };
 };
 
