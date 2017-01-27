@@ -22,6 +22,10 @@ class RouterComponent extends Component {
     });
   }
 
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     return (
         <Router sceneStyle={{ paddingTop: 65 }} >

@@ -32,8 +32,6 @@ export const loadingRequest = loading => ({
 const loadingSuccessful = (dispatch, user) => {
   dispatch(userLoggedIn(user));
   dispatch(loadingRequest(false));
-
-  Actions.main();
 };
 
 const loadingFailed = (dispatch, error) => {
