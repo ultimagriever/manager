@@ -1,5 +1,8 @@
-import firebase from 'firebase';
+// import firebase from 'firebase';
+import Firestack from 'react-native-firestack';
 import { Actions } from 'react-native-router-flux';
+
+const firestack = new Firestack();
 
 export const employeeUpdate = ({ prop, value }) => ({
   type: 'employee_update',
@@ -11,19 +14,19 @@ export const employeeReset = () => ({
 });
 
 export const employeeAdd = ({ name, phone, shift, avatar }) => dispatch => {
-  const { currentUser } = firebase.auth();
+  const { currentUser } = firestack.auth();
 
-  firebase.database().ref(`/users/${currentUser.uid}/employees`)
+  firestack.database().ref(`/users/${currentUser.uid}/employees`)
       .push({ name, phone, shift, avatar })
       .then(() => back(dispatch));
 };
 
 export const employeesFetch = () => dispatch => {
-  const { currentUser } = firebase.auth();
-
-  dispatch(employeesLoading());
-  firebase.database().ref(`/users/${currentUser.uid}/employees`)
-      .on('value', snapshot => dispatch({ type: 'employees_fetch_success', employees: snapshot.val() }));
+  const { currentUser } = firestack.auth();
+  firestack.database().ref(`/users/${currentUser.uid}/employees`)
+      .on('value', snapshot => {
+        dispatch({ type: 'employees_fetch_success', employees: snapshot.val() });
+      });
 }
 
 export const employeesLoading = () => ({
@@ -31,17 +34,17 @@ export const employeesLoading = () => ({
 });
 
 export const employeeEdit = ({ name, phone, shift, avatar, id }) => dispatch => {
-  const { currentUser } = firebase.auth();
+  const { currentUser } = firestack.auth();
 
-  firebase.database().ref(`/users/${currentUser.uid}/employees/${id}`)
+  firestack.database().ref(`/users/${currentUser.uid}/employees/${id}`)
       .update({ name, phone, shift, avatar })
       .then(() => back(dispatch));
 };
 
 export const employeeDelete = id => dispatch => {
-  const { currentUser } = firebase.auth();
+  const { currentUser } = firestack.auth();
 
-  firebase.database().ref(`/users/${currentUser.uid}/employees/${id}`).remove()
+  firestack.database().ref(`/users/${currentUser.uid}/employees/${id}`).remove()
       .then(() => back(dispatch));
 }
 
