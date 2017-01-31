@@ -1,5 +1,6 @@
 // import firebase from 'firebase';
 import Firestack from 'react-native-firestack';
+import { Platform } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import uuid from 'uuid';
 
@@ -23,10 +24,17 @@ export const employeeAdd = ({ name, phone, shift, avatar }) => dispatch => {
 
 export const employeesFetch = () => dispatch => {
   const { currentUser } = firestack.auth();
-  firestack.database().ref(`/users/${currentUser.uid}/employees`)
-      .on('value', snapshot => {
-        dispatch({ type: 'employees_fetch_success', employees: snapshot.val() });
-      });
+  if (Platform.OS === 'ios') {
+    firestack.database().ref(`/users/${currentUser.uid}/employees`)
+        .on('value', snapshot => {
+          dispatch({ type: 'employees_fetch_success', employees: snapshot.val() });
+        });
+  } else {
+    firestack.database().ref(`/users/${currentUser.uid}/employees`)
+        .once('value', snapshot => {
+          dispatch({ type: 'employees_fetch_success', employees: snapshot.val() });
+        });
+  }
 }
 
 export const employeeUploadAvatar = uri => dispatch => {
@@ -51,5 +59,8 @@ export const employeeDelete = id => dispatch => {
 
 const back = dispatch => {
   dispatch(employeeReset());
+  if (Platform.OS === 'android') {
+    employeesFetch();
+  }
   Actions.employeeList({ type: 'reset' });
 };
