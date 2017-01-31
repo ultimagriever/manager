@@ -84,7 +84,7 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '24.0.2'
 
     defaultConfig {
         applicationId "com.manager"
@@ -126,6 +126,7 @@ android {
 }
 
 dependencies {
+    compile 'com.google.android.gms:play-services:10.0.1'
     compile project(':react-native-firestack')
     compile project(':react-native-image-picker')
     compile fileTree(dir: "libs", include: ["*.jar"])
@@ -139,3 +140,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+
+apply plugin: 'com.google.gms.google-services'
