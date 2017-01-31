@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Image, Alert } from 'react-native';
+import { View, Image, Alert, TouchableWithoutFeedback } from 'react-native';
+import dismissKeyboard from 'react-native/Libraries/Utilities/dismissKeyboard';
 import { connect } from 'react-redux';
 import { showImagePicker } from 'react-native-image-picker';
 import { CardSection, FormField, FormPicker, Button } from '../../components';
@@ -28,42 +29,44 @@ class EmployeeForm extends Component {
 
   render() {
     return (
-        <View>
-          <CardSection>
-            <FormField
-                label="Name"
-                placeholder="Jane Doe"
-                onChangeText={value => this.props.onChange({ prop: 'name', value })}
-                value={this.props.name}
-            />
-          </CardSection>
+        <TouchableWithoutFeedback onPress={dismissKeyboard}>
+          <View>
+            <CardSection>
+              <FormField
+                  label="Name"
+                  placeholder="Jane Doe"
+                  onChangeText={value => this.props.onChange({ prop: 'name', value })}
+                  value={this.props.name}
+              />
+            </CardSection>
 
-          <CardSection>
-            <FormField
-                label="Phone"
-                placeholder="555-5555"
-                keyboardType="phone-pad"
-                onChangeText={value => this.props.onChange({ prop: 'phone', value })}
-                value={this.props.phone}
-            />
-          </CardSection>
+            <CardSection>
+              <FormField
+                  label="Phone"
+                  placeholder="555-5555"
+                  keyboardType="phone-pad"
+                  onChangeText={value => this.props.onChange({ prop: 'phone', value })}
+                  value={this.props.phone}
+              />
+            </CardSection>
 
-          <CardSection>
-            <FormPicker
-                label="Shift"
-                onValueChange={value => this.props.onChange({ prop: 'shift', value })}
-                selectedValue={this.props.shift.length > 0 ? this.props.shift : 'mon'}
-                items={shifts}
-            />
-          </CardSection>
+            <CardSection>
+              <FormPicker
+                  label="Shift"
+                  onValueChange={value => this.props.onChange({ prop: 'shift', value })}
+                  selectedValue={this.props.shift.length > 0 ? this.props.shift : 'mon'}
+                  items={shifts}
+              />
+            </CardSection>
 
-          <CardSection>
-            <Image source={{ uri: this.props.avatar }} style={{ width: 50, height: 50, alignSelf: 'center' }} />
-            <Button onPress={this.onSelectPicture.bind(this)}>
-              Select Profile Picture
-            </Button>
-          </CardSection>
-        </View>
+            <CardSection>
+              <Image source={{ uri: this.props.avatar }} style={{ width: 50, height: 50, alignSelf: 'center' }} />
+              <Button onPress={this.onSelectPicture.bind(this)}>
+                Select Profile Picture
+              </Button>
+            </CardSection>
+          </View>
+        </TouchableWithoutFeedback>
     );
   }
 }
