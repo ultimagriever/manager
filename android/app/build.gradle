@@ -87,7 +87,7 @@ android {
     buildToolsVersion '24.0.2'
 
     defaultConfig {
-        applicationId "com.manager"
+        applicationId "com.jp7.manager"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -123,6 +123,11 @@ android {
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
         }
+    }
+
+    // Dex Options
+    dexOptions {
+        javaMaxHeapSize "2g"
     }
 }
 

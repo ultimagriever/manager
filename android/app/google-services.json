@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:31719693570:android:e0e01c746c7775b5",
+        "mobilesdk_app_id": "1:31719693570:android:a001d7531e9d30f3",
         "android_client_info": {
-          "package_name": "com.manager"
+          "package_name": "com.jp7.manager"
         }
       },
       "oauth_client": [

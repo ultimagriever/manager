@@ -1,4 +1,4 @@
-package com.manager;
+package com.jp7.manager;
 
 import android.app.Application;
 import android.content.Context;

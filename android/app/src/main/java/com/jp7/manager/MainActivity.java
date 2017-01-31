@@ -1,4 +1,4 @@
-package com.manager;
+package com.jp7.manager;
 
 import com.facebook.react.ReactActivity;
 
