@@ -92,6 +92,7 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -127,6 +128,7 @@ android {
 
 dependencies {
     compile 'com.google.android.gms:play-services:10.0.1'
+    compile 'com.android.support:multidex:1.0.1'
     compile project(':react-native-firestack')
     compile project(':react-native-image-picker')
     compile fileTree(dir: "libs", include: ["*.jar"])
