@@ -1,6 +1,0 @@
-framework module Pods_manager {
-  umbrella header "Pods-manager-umbrella.h"
-
-  export *
-  module * { export * }
-}
