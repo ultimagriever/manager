@@ -21,6 +21,8 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+ios/Pods
+
 
 # Android/IntelliJ
 #
@@ -40,6 +42,10 @@ buck-out/
 \.buckd/
 android/app/libs
 *.keystore
+*.jks
+*.apk
+android/app/src/main/assets/
+android/app/src/main/res/*dpi*
 
 # fastlane
 #
